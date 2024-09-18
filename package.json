@@ -1,0 +1,13 @@
+{
+  "name": "Git_Demo",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^9.0.9",
+    "@wdio/local-runner": "^9.0.9",
+    "@wdio/mocha-framework": "^9.0.8",
+    "@wdio/spec-reporter": "^9.0.8"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.js"
+  }
+}

@@ -7,6 +7,8 @@ describe("Test Case 1",()=>{
         await browser.pause(2000)
         const title=await browser.getTitle();
         console.log("Title is: ", title);
+        console.log("Test Ended");
+        
 
 })
 

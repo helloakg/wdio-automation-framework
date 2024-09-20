@@ -36,7 +36,7 @@ describe('Test Patient Login Module__smoke', () => {
         await browser.pause(2000);
     
         // Intentionally fail this step by setting value to a non-interactable element
-        await browser.$('*=Gmail').setValue('buggy code');
+        //await browser.$('*=Gmail').setValue('buggy code');
         await browser.pause(2000);
     });
 

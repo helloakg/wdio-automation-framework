@@ -96,11 +96,15 @@ export const config = {
     console.log(`beforeTest: Running setup for test: ${test.title}`);
   },
 
-  afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+  afterTest: async function (
+    test,
+    context,
+    { error, result, duration, passed, retries }
+  ) {
     if (!passed && lastElement) {
       try {
         const element = await $(lastElement);
-        
+
         // Ensure element exists before interacting
         await element.waitForExist({ timeout: 5000 });
         await element.waitForDisplayed({ timeout: 5000 });
@@ -122,11 +126,10 @@ export const config = {
       console.log("Full page screenshot saved.");
     }
 
-    console.log(`afterTest: Test ${test.title} finished. Duration: ${duration}ms`);
+    console.log(
+      `afterTest: Test ${test.title} finished. Duration: ${duration}ms`
+    );
   },
-
-
- 
 
   onComplete: function () {
     const reportError = new Error("Could not generate Allure report");
@@ -164,13 +167,18 @@ export const config = {
           .replace(/:/g, "-")
           .replace(/\//g, "-")}.html`;
         const sourceFile = path.join(allureReportDir, "index.html");
+        const renamedFile = path.join(allureReportDir, newFileName);
         const backupFile = path.join(allureBackupDir, newFileName);
 
-        //fs.renameSync(sourceFile, backupFile);
-        fs.copyFileSync(sourceFile, backupFile);
+        // Step 1: Rename the index.html in allure-report directory
+        fs.renameSync(sourceFile, renamedFile);
+
+        console.log(`Report renamed to: ${renamedFile}`);
+
+        // Step 2: Copy the renamed file to the allure-backup directory
+        fs.copyFileSync(renamedFile, backupFile);
 
         console.log(`Report backed up to: ${backupFile}`);
-
         // const openReport = allure(["open", backupFile]);
         // openReport.on("exit", function (openExitCode) {
         //   if (openExitCode !== 0) {
@@ -178,9 +186,10 @@ export const config = {
         //     return reject(reportError);
         //   }
         //   console.log("Allure report opened successfully");
-        //   resolve();
         // });
+        
+        resolve();
       });
     });
-  }
-}
+  },
+};

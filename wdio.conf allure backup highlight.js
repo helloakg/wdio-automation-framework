@@ -170,15 +170,15 @@ export const config = {
 
         console.log(`Report backed up to: ${backupFile}`);
 
-        // const openReport = allure(["open", backupFile]);
-        // openReport.on("exit", function (openExitCode) {
-        //   if (openExitCode !== 0) {
-        //     console.error("Failed to open Allure report");
-        //     return reject(reportError);
-        //   }
-        //   console.log("Allure report opened successfully");
-        //   resolve();
-        // });
+        const openReport = allure(["open", backupFile]);
+        openReport.on("exit", function (openExitCode) {
+          if (openExitCode !== 0) {
+            console.error("Failed to open Allure report");
+            return reject(reportError);
+          }
+          console.log("Allure report opened successfully");
+          resolve();
+        });
       });
     });
   }

@@ -32,11 +32,11 @@ describe('Test Patient Login Module__smoke', () => {
         await expect(title).toEqual('Google');
         
         // Interact with the search box (will update lastElement)
-        await browser.$('[name="q"]').execute();
+        await browser.$('[name="q"]').setValue('mobiles');
         await browser.pause(2000);
     
         // Intentionally fail this step by setting value to a non-interactable element
-        await browser.$('*=Gmail').click();
+        await browser.$('*=Gmail').setValue('buggy code');
         await browser.pause(2000);
     });
 

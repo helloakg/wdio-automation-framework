@@ -187,6 +187,7 @@ export const config = {
         //   }
         //   console.log("Allure report opened successfully");
         // });
+
         
         resolve();
       });

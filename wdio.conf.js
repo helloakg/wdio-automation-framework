@@ -166,7 +166,8 @@ export const config = {
         const sourceFile = path.join(allureReportDir, "index.html");
         const backupFile = path.join(allureBackupDir, newFileName);
 
-        fs.renameSync(sourceFile, backupFile);
+        //fs.renameSync(sourceFile, backupFile);
+        fs.copyFileSync(sourceFile, backupFile);
 
         console.log(`Report backed up to: ${backupFile}`);
 

@@ -1,5 +1,4 @@
 node_modules/
 *.log
-reports/allure-report
-reports/allure-results
-
+reports/allure/allure-results
+reports/allure/allure-report

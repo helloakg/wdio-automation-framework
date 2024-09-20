@@ -2,9 +2,6 @@ import allure from "allure-commandline";
 import fse from "fs-extra";
 import fs from "fs";
 import path from "path";
-const browserNameArg = process.argv.find(arg => arg.includes('--browser=')) || '--browser=chrome';
-const browserName = browserNameArg.split('=')[1];
-
 let allureDir = "./reports/allure";
 let lastElement = null;
 
@@ -35,11 +32,11 @@ export const config = {
 
   capabilities: [
     {
-            maxInstances: 1,
-            browserName: browserName,  // Use browser name passed as a parameter
-            acceptInsecureCerts: true,
+      browserName: "chrome",
+      "goog:chromeOptions": {
+        args: ["headless", "disable-gpu"],
       },
-    
+    },
   ],
 
   // ===================
@@ -191,7 +188,7 @@ export const config = {
         //   console.log("Allure report opened successfully");
         // });
 
-
+        
         resolve();
       });
     });
